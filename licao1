@@ -1,0 +1,23 @@
+def decorator_imprimir(func):
+    def wrapper(*args, **kwargs):
+        # Imprimir os parâmetros passados para a função
+        print(f"capital: {args[0]} taxa: {args[1]} tempo: {args[2]}")
+        
+        # Executar a função decorada e obter o resultado
+        resultado = func(*args, **kwargs)
+        
+        # Imprimir o resultado da função
+        print(f"resultado: {resultado}")
+        
+        # Retornar o resultado da função
+        return resultado
+    
+    return wrapper
+
+# Decorando a função juros_simples diretamente
+@decorator_imprimir
+def juros_simples(capital, taxa, tempo):
+    return capital * (taxa / 100) * tempo
+
+# Chamando a função decorada
+juros_simples(1000, 5, 6)
